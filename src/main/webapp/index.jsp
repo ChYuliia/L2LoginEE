@@ -5,11 +5,16 @@
   </head>
   <body>
     <% String login = (String)session.getAttribute("user_login"); %>
+    <% String errorMsg = (String)session.getAttribute("errorMsg"); %>
 
     <% if (login == null || "".equals(login)) { %>
         <form action="/login" method="POST">
+            <% if (errorMsg != null) { %>
+            <h2><%= errorMsg %></h2>
+            <% } %>
             Login: <input type="text" name="login"><br>
             Password: <input type="password" name="password"><br>
+            Age: <input type="text" name="age"><br>
             <input type="submit" />
         </form>
     <% } else { %>
